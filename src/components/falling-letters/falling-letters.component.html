@@ -1,0 +1,10 @@
+<div class="fallingLetters">
+  <div
+    *ngFor="let letter of letters"
+    [style.top]="letter.top + 'vh'"
+    [style.left]="letter.left + 'vw'"
+    class="letter"
+  >
+    {{ letter.char }}
+  </div>
+</div>

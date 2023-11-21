@@ -1,0 +1,7 @@
+.fallingLetters {
+  @apply absolute top-0 left-0 pointer-events-none select-none h-screen w-screen;
+}
+
+.letter {
+  @apply absolute text-sm top-0 animate-fall opacity-30;
+}
