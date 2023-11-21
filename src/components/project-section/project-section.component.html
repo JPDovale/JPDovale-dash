@@ -1,0 +1,32 @@
+<div
+  class="w-full flex flex-col bg-zinc-900 rounded-md shadow-lg shadow-green200/10"
+>
+  <h4
+    class="text-center font-pixels text-4xl underline uppercase p-4 text-green300 opacity-70"
+  >
+    {{ project?.name }}
+  </h4>
+
+  <div class="flex items-center justify-center overflow-hidden">
+    <img
+      src="{{ project?.cover?.url }}"
+      alt="{{ project?.cover?.alt }}"
+      class="max-h-[22rem] min-h-[18rem] object-cover"
+    />
+  </div>
+
+  <div class="grid grid-cols-12 px-4 gap-2 mt-4">
+    <img
+      title="{{ tech.name }}"
+      class="rounded-md w-full h-full object-fill"
+      *ngFor="let tech of project?.techs"
+      src="{{ tech.icon.url }}"
+      alt="{{ tech.icon.url }}"
+    />
+  </div>
+
+  <article
+    class="prose prose-invert prose-green p-4"
+    [innerHTML]="project?.preview"
+  ></article>
+</div>
