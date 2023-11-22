@@ -15,6 +15,7 @@ import { ProjectsComponent } from '../components/projects/projects.component'
     HeaderComponent,
     ProjectsComponent,
   ],
+
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })

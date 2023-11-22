@@ -1,7 +1,7 @@
 <div class="text-white">
   <h5 class="text-xl font-base font-bold uppercase opacity-50">Projetos</h5>
 
-  <div class="grid grid-cols-2 gap-6 mt-6">
+  <div class="grid grid-cols-2 gap-6 mt-6 max-md:grid-cols-1">
     <app-project-section *ngFor="let project of projects" [project]="project" />
   </div>
 </div>
