@@ -1,0 +1,28 @@
+<main class="w-screen bg-zinc-950 pb-40">
+  <h3
+    class="text-green300 text-6xl h-screen flex items-center justify-center underline-offset-1 font-pixels font-bold max-md:text-5xl"
+  >
+    <app-falling-letters />
+    {{ projectName }}
+  </h3>
+
+  <section class="max-w-4xl flex flex-col items-center mx-auto mt-10 px-4">
+    <div
+      class="flex max-w-[3.75rem] px-4 items-center justify-center gap-2 mt-4"
+    >
+      <img
+        title="{{ tech.name }}"
+        class="rounded-md w-full h-full object-fill"
+        *ngFor="let tech of project?.techs"
+        src="{{ tech.icon.url }}"
+        alt="{{ tech.icon.url }}"
+      />
+    </div>
+    <article class="prose prose-lg prose-invert text-justify prose-green">
+      <div [innerHTML]="project?.description"></div>
+      <a [href]="project?.githubUrl" target="_blank">
+        GitHub: {{ project?.name }}
+      </a>
+    </article>
+  </section>
+</main>

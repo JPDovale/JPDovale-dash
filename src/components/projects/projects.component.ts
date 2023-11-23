@@ -4,26 +4,7 @@ import { CommonModule } from '@angular/common'
 import { client } from '../../config/prismicConfig'
 import { asDate, asHTML } from '@prismicio/client'
 import { ProjectSectionComponent } from '../project-section/project-section.component'
-
-export type Project = {
-  uid: string
-  name: string
-  githubUrl: string
-  createdAt: Date | null
-  cover: {
-    url: string
-    alt?: string
-  }
-  description: string | null
-  preview: string | null
-  techs: {
-    name: string
-    icon: {
-      url: string
-      alt?: string
-    }
-  }[]
-}
+import { Project } from '../../store/projects/project.reducer'
 
 @Component({
   selector: 'app-projects',
@@ -36,9 +17,9 @@ export class ProjectsComponent implements OnInit {
   projects: Project[] = []
 
   async ngOnInit(): Promise<void> {
-    const projects = (await client.getAllByType('project')) as unknown[]
+    const projectsOfApi = (await client.getAllByType('project')) as unknown[]
 
-    this.projects = projects.map((project: any) => ({
+    const projectsMapped: Project[] = projectsOfApi.map((project: any) => ({
       uid: project.uid,
       cover: {
         url: project.data.cover.url,
@@ -57,5 +38,7 @@ export class ProjectsComponent implements OnInit {
         },
       })),
     }))
+
+    this.projects = projectsMapped
   }
 }
