@@ -16,6 +16,9 @@ module.exports = {
         blue400: '#001c8e',
         blue200: '#0029cf',
       },
+      gridTemplateColumns: {
+        20: 'repeat(20, minmax(0, 1fr))',
+      },
       fontFamily: {
         dots: 'Codystar',
         base: 'Roboto',

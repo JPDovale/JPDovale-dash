@@ -20,6 +20,7 @@ import { asHTML } from '@prismicio/client'
 })
 export class HomeComponent implements OnInit {
   aboutMe = ''
+  open = false
 
   async ngOnInit(): Promise<void> {
     const { results } = await client.getByType('about_me')
