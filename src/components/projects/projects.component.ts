@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common'
 import { client } from '../../config/prismicConfig'
 import { asDate, asHTML } from '@prismicio/client'
 import { ProjectSectionComponent } from '../project-section/project-section.component'
-import { Project } from '../../store/projects/project.reducer'
+import { Project } from '../../pages/project/project.component'
 
 @Component({
   selector: 'app-projects',

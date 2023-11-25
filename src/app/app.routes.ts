@@ -4,5 +4,5 @@ import { ProjectComponent } from '../pages/project/project.component'
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'projects/:name', component: ProjectComponent },
+  { path: 'projects/:uid', component: ProjectComponent },
 ]

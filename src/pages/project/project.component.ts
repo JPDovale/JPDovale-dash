@@ -2,12 +2,30 @@ import { Component, OnInit } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FallingLettersComponent } from '../../components/falling-letters/falling-letters.component'
 import { ActivatedRoute } from '@angular/router'
-import { Store, StoreModule } from '@ngrx/store'
+import { StoreModule } from '@ngrx/store'
 
-import {
-  Project,
-  ProjectInitialState,
-} from '../../store/projects/project.reducer'
+import { client } from '../../config/prismicConfig'
+import { asDate, asHTML } from '@prismicio/client'
+
+export type Project = {
+  uid: string
+  name: string
+  githubUrl: string
+  createdAt: Date | null
+  cover: {
+    url: string
+    alt?: string
+  }
+  description: string | null
+  preview: string | null
+  techs: {
+    name: string
+    icon: {
+      url: string
+      alt?: string
+    }
+  }[]
+}
 
 @Component({
   selector: 'app-project',
@@ -17,22 +35,39 @@ import {
   styleUrl: './project.component.css',
 })
 export class ProjectComponent implements OnInit {
-  projectName: string | null = null
-
-  constructor(
-    private route: ActivatedRoute,
-    private store: Store<{ project: ProjectInitialState }>,
-  ) {}
-
+  projectId: string | null = null
   project: Project | null = null
 
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute) {}
+
+  async ngOnInit(): Promise<void> {
     this.route.paramMap.subscribe((params) => {
-      this.projectName = params.get('name')
+      this.projectId = params.get('uid')
     })
 
-    this.store
-      .select('project')
-      .subscribe((project) => (this.project = project))
+    const projectReceived = (await client.getByUID(
+      'project',
+      this.projectId ?? '',
+    )) as any
+
+    this.project = {
+      uid: projectReceived.uid,
+      cover: {
+        url: projectReceived.data.cover.url,
+        alt: projectReceived.data.cover.alt,
+      },
+      createdAt: asDate(projectReceived.first_publication_date),
+      description: asHTML(projectReceived.data.description),
+      preview: asHTML(projectReceived.data.preview),
+      githubUrl: projectReceived.data.github.url,
+      name: projectReceived.data.name[0].text,
+      techs: projectReceived.data.techs.map((tech: any) => ({
+        name: tech.name,
+        icon: {
+          url: tech.icon.url,
+          alt: tech.icon.alt,
+        },
+      })),
+    }
   }
 }

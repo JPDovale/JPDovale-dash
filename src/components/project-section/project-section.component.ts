@@ -1,12 +1,7 @@
 import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { Router, RouterModule } from '@angular/router'
-import {
-  Project,
-  ProjectInitialState,
-} from '../../store/projects/project.reducer'
-import { Store } from '@ngrx/store'
-import { setProjectAction } from '../../store/projects/project.actions'
+import { Project } from '../../pages/project/project.component'
 
 @Component({
   selector: 'app-project-section',
@@ -18,13 +13,9 @@ import { setProjectAction } from '../../store/projects/project.actions'
 export class ProjectSectionComponent {
   @Input() project: Project | null = null
 
-  constructor(
-    private store: Store<{ project: ProjectInitialState }>,
-    private router: Router,
-  ) {}
+  constructor(private router: Router) {}
 
   loadProjectPage() {
-    this.store.dispatch(setProjectAction({ project: this.project! }))
-    this.router.navigate(['/projects', this.project?.name])
+    this.router.navigate(['/projects', this.project?.uid])
   }
 }
