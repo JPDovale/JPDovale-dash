@@ -1,7 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,ts}'],
+  safelist: [
+    {
+      pattern: /hljs+/,
+    },
+  ],
   theme: {
+    hljs: {
+      theme: 'night-owl',
+    },
     extend: {
       colors: {
         green200: '#00ff00',
@@ -43,5 +51,8 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('tailwind-highlightjs'),
+  ],
 }

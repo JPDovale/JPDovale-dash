@@ -1,9 +1,43 @@
 <header
-  class="w-screen fixed flex z-10 items-center max-md:justify-center gap-4 px-4 py-2 bg-black border-b border-b-green600"
+  class="w-screen fixed flex z-10 items-center max-md:justify-center gap-4 px-4 py-3 bg-black border-b border-b-green600"
 >
-  <img src="assets/logo.png" class="w-10" />
+  <img src="assets/logo.png" class="w-10 absolute max-md:block" />
 
-  <span class="text-xl text-white font-pixels opacity-75 max-md:hidden">
-    Keep coding
-  </span>
+  <nav class="text-green200 font-pixels flex gap-2.5 mx-auto">
+    <a
+      [attr.data-active]="routerActive === '/'"
+      [routerLink]="['/']"
+      class="px-3 data-[active=true]:underline hover:shadow-2xl shadow-green200/40 ease-in-out duration-200 cursor-pointer"
+    >
+      Inicio
+    </a>
+    <a
+      [attr.data-active]="routerActive === '/projects'"
+      [routerLink]="['/projects']"
+      class="px-3 data-[active=true]:underline hover:shadow-2xl shadow-green200/40 ease-in-out duration-200 cursor-pointer"
+    >
+      Projetos
+    </a>
+    <a
+      [attr.data-active]="routerActive === '/posts'"
+      [routerLink]="['/posts']"
+      class="px-3 data-[active=true]:underline hover:shadow-2xl shadow-green200/40 ease-in-out duration-200 cursor-pointer"
+    >
+      Posts
+    </a>
+    <!-- <a
+      [attr.data-active]="routerActive === '/books'"
+      [routerLink]="['/books']"
+      class="px-3 data-[active=true]:underline hover:shadow-2xl shadow-green200/40 ease-in-out duration-200 cursor-pointer"
+    >
+      Livros
+    </a>
+    <a
+      [attr.data-active]="routerActive === '/draws'"
+      [routerLink]="['/draws']"
+      class="px-3 data-[active=true]:underline hover:shadow-2xl shadow-green200/40 ease-in-out duration-200 cursor-pointer"
+    >
+      Desenhos
+    </a> -->
+  </nav>
 </header>
